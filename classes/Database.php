@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Conexao {
 	/**
@@ -21,10 +21,9 @@ class Conexao {
 			$this->connect = new PDO('mysql:host=localhost;dbname=database', 'root', '');
 			// $this->connect->setAttribute();
 		} catch (Exception $e) {
-			echo "Message: ".$e->getMessage();
+			echo "Message: " . $e->getMessage();
 		}
 	}
-
 
 	/**
 	 * [query function para preparar a query]
@@ -33,10 +32,7 @@ class Conexao {
 	 */
 	public function query($query) {
 		$this->stmt = $this->connect->prepare($query);
-		return $this->stmt;
 	}
-
-	
 
 	/**
 	 * [bind passar os valores da query preparada]
@@ -45,19 +41,16 @@ class Conexao {
 	 * @return [type]        [query com valores pronta para ser executada]
 	 */
 	public function bind($param, $value) {
-		return $this->stmt->bindParam($param, $value);
+		$this->stmt->bindParam($param, $value);
 	}
-
 
 	/**
 	 * [executar executar a query ja pronta]
 	 * @return [type] [true se a query executar sem erro]
 	 */
 	public function executar() {
-		return $this->stmt->execute();
+		$this->stmt->execute();
 	}
-
-
 
 	/**
 	 * [getRow contar numero de linhas afetadas]
@@ -67,27 +60,22 @@ class Conexao {
 		return $this->stmt->rowCount();
 	}
 
-
 	/**
 	 * [singledata fazer fecth de dados]
 	 * @return [type] [retorna uma unica linha da base dados]
 	 */
-	public function singledata() {
-		$this->stmt->executar();
-		return $this->stmt->fetch(PDO::FETCH::ASSOC);
+	public function singleData() {
+		$this->executar();
+		return $this->stmt->fetch(PDO::FETCH_ASSOC);
 	}
-
 
 	/**
 	 * [alldata fazer fetch de todos dados]
 	 * @return [type] [retorna array com todos dados]
 	 */
-	public function alldata() {
-		$this->stmt->executar();
-		return $this->stmt->fetchAll(PDO::FETCH::ASSOC);
+	public function allData() {
+		$this->executar();
+		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-
-
-
 
 }
