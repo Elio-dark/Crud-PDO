@@ -74,7 +74,7 @@ class Conexao {
 	 */
 	public function singledata() {
 		$this->stmt->executar();
-		return $this->stmt->fetch(PDO::FETCH::ASSOC);
+		return $this->stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
 
@@ -84,7 +84,7 @@ class Conexao {
 	 */
 	public function alldata() {
 		$this->stmt->executar();
-		return $this->stmt->fetchAll(PDO::FETCH::ASSOC);
+		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 
