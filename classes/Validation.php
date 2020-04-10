@@ -43,6 +43,9 @@ class Validation {
 				return 0;
 				exit();
 			}
+		} else {
+			return 0;
+			exit();
 		}
 	}
 }

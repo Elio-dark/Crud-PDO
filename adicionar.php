@@ -1,12 +1,23 @@
 <?php
 // Header
 include_once 'includes/header.php';
+include_once 'classes/Cliente.php';
+
+$cliente = new Cliente();
+
+if (isset($_POST['btn-cadastrar'])) {
+	if ($cliente->create() > 0) {
+		header('Location: index.php');
+		exit();
+	}
+}
+
 ?>
 
 <div class="row">
 	<div class="col s12 m6 push-m3">
 		<h3 class="light"> Novo Cliente </h3>
-		<form action="php_action/create.php" method="POST">
+		<form action="" method="POST">
 			<div class="input-field col s12">
 				<input type="text" name="nome" id="nome">
 				<label for="nome">Nome</label>

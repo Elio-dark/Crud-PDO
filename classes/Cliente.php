@@ -30,7 +30,27 @@ class Cliente {
 	}
 
 	public function create() {
-		# code...
+		$nome = $this->vd->nomeCheck($_POST['nome']);
+		$sobrenome = $this->vd->nomeCheck($_POST['sobrenome']);
+		$idade = $this->vd->idadeCheck($_POST['idade']);
+		$email = $this->vd->emailCheck($_POST['email']);
+
+
+		if (($nome AND $sobrenome AND $idade) == 0) {
+			return 0;
+			exit();
+		} else {
+			$query = "INSERT INTO clientes VALUES (NULL, :nome, :sobrenome, :email, :idade)";
+			$this->db->query($query);
+			$this->db->bind('nome', $nome);
+			$this->db->bind('sobrenome', $sobrenome);
+			$this->db->bind('idade', $idade);
+			$this->db->bind('email', $email);
+
+			$this->db->executar();
+
+			return $this->db->getRow();
+		}
 	}
 
 	public function update($id) {
