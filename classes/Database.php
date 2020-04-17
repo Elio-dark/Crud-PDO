@@ -18,7 +18,7 @@ class Conexao {
 	 */
 	public function __construct() {
 		try {
-			$this->connect = new PDO('mysql:host=localhost;dbname=crud', 'root', '');
+			$this->connect = new PDO('mysql:host=localhost;dbname=database', 'root', '');
 			// $this->connect->setAttribute();
 		} catch (Exception $e) {
 			echo "Message: " . $e->getMessage();

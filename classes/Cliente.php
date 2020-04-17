@@ -35,7 +35,6 @@ class Cliente {
 		$idade = $this->vd->idadeCheck($_POST['idade']);
 		$email = $this->vd->emailCheck($_POST['email']);
 
-
 		if (($nome AND $sobrenome AND $idade) == 0) {
 			return 0;
 			exit();
@@ -54,7 +53,27 @@ class Cliente {
 	}
 
 	public function update($id) {
-		# code...
+		$nome = $this->vd->nomeCheck($_POST['nome']);
+		$sobrenome = $this->vd->nomeCheck($_POST['sobrenome']);
+		$idade = $this->vd->idadeCheck($_POST['idade']);
+		$email = $this->vd->emailCheck($_POST['email']);
+
+		if (($nome AND $sobrenome AND $idade) == 0) {
+			return 0;
+			exit();
+		} else {
+			$query = "UPDATE clientes SET nome = :nome, sobrenome = :sobrenome, email = :email, idade = :idade WHERE id = :id";
+			$this->db->query($query);
+			$this->db->bind('id', $id);
+			$this->db->bind('nome', $nome);
+			$this->db->bind('sobrenome', $sobrenome);
+			$this->db->bind('email', $email);
+			$this->db->bind('idade', $idade);
+			$this->db->executar();
+
+			return $this->db->getRow();
+		}
+
 	}
 
 	public function delete($id) {
